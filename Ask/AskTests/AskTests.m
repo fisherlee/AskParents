@@ -23,34 +23,109 @@
 }
 
 - (void)testExample {
-	NSArray *random = [self randomNumbers];
-	NSLog(@"random: %@", random);
+	
+	NSArray *evenArr = [self evenArray];
+	//NSLog(@"even: %@", evenArr);
+	
+	NSArray *unevenArr = [self unevenArray];
+	//NSLog(@"uneven: %@", unevenArr);
+	
+	NSArray *random = [self randomNumbersEven:evenArr uneven:unevenArr];
+	//NSLog(@"random: %@", random);
+	
+	NSInteger clickEvenSum = 0;
+	NSInteger clickUnevenSum = 0;
+	for (NSNumber *num in random) {
+		NSInteger item = [num integerValue];
+		if (item%2 == 0) {
+			clickEvenSum = clickEvenSum+item;
+		}
+		if (item%2!=0) {
+			clickUnevenSum = clickUnevenSum+item;
+		}
+	}
+	
+	NSInteger even = [self evenSumWithArray:evenArr];
+	NSLog(@"even sum: %@ | click even sum: %@", @(even), @(clickEvenSum));
+	
+	NSInteger uneven = [self unevenSumWithArray:unevenArr];
+	NSLog(@"uneven sum: %@ | click uneven sum: %@", @(uneven), @(clickUnevenSum));
+	
+	XCTAssertEqual(even, clickEvenSum);
+	XCTAssertEqual(uneven, clickUnevenSum);
+
 }
 
-- (NSArray *)randomNumbers
+- (void)testRandomIdxArray {
+	for (NSInteger i=0; i<100; i++) {
+		NSArray *idxArray = [self randomIdxArray:@[@0,@1,@2,@3,@4,@5,@6,@7,@8,@9]];
+		NSLog(@"%@",idxArray);
+	}
+}
+
+- (void)testSum {
+	NSInteger even = [self evenSumWithArray:[self evenArray]];
+	NSLog(@"even sum: %@", @(even));
+	
+	NSInteger uneven = [self unevenSumWithArray:[self evenArray]];
+	NSLog(@"uneven sum: %@", @(uneven));
+}
+
+- (NSInteger)evenSumWithArray:(NSArray *)array
 {
-	NSArray *even = [self evenArray];
-	NSLog(@"even: %@", even);
-	
-	NSArray *uneven = [self unevenArray];
-	NSLog(@"uneven: %@", uneven);
-	
+	return [self sumArray:array];
+}
+
+- (NSInteger)unevenSumWithArray:(NSArray *)array
+{
+	return [self sumArray:array];
+}
+
+- (NSInteger)sumArray:(NSArray *)array
+{
+	NSInteger sum = 0;
+	for (NSNumber *num in array) {
+		sum = sum + [num integerValue];
+	}
+	return sum;
+}
+
+- (NSArray *)randomNumbersEven:(NSArray *)even uneven:(NSArray *)uneven
+{
+	NSArray *idxArray = [self randomIdxArray:@[@0,@1,@2,@3,@4,@5,@6,@7,@8]];
+
 	NSMutableArray *array = [NSMutableArray array];
 	[array addObjectsFromArray:even];
 	[array addObjectsFromArray:uneven];
 	
-	NSArray *idxArray = @[@0,@1,@2,@3,@4,@5,@6,@7,@8,@9];
-	NSMutableArray *idxArray = [NSMutableArray array];
-	[idxArray addObjectsFromArray:idxTempArray];
-	
 	NSMutableArray *resultArray = [NSMutableArray array];
 	for (NSInteger i=0; i<9; i++) {
-		NSInteger idx = arc4random()%idxTempArray.count;
-		[resultArray addObject:array[idx]];
-		
+		NSInteger idx = [idxArray[i] integerValue];
+		if (idx < [array count]) {
+			[resultArray addObject:array[idx]];
+		}else {
+			[resultArray addObject:@2];
+		}
 	}
 
-	return [NSArray arrayWithArray:array];
+	return [NSArray arrayWithArray:resultArray];
+}
+
+- (NSArray *)randomIdxArray:(NSArray *)array;
+{
+	
+	
+	NSMutableArray *tempArray = [NSMutableArray array];
+	[tempArray addObjectsFromArray:array];
+	
+	NSMutableArray *idxArray = [NSMutableArray array];
+	for (NSInteger i=0; i<array.count; i++) {
+		NSInteger idx = arc4random()%tempArray.count;
+		[idxArray addObject:tempArray[idx]];
+		[tempArray removeObjectAtIndex:idx];
+	}
+	
+	return [NSArray arrayWithArray:idxArray];
 }
 
 - (NSArray *)evenArray

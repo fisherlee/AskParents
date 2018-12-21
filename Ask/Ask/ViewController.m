@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AskNumView.h"
 
 @interface ViewController ()
 
@@ -21,7 +22,7 @@
 
 - (IBAction)numberAction:(id)sender
 {
-	
+	[[AskNumView shared] show];
 }
 
 @end
