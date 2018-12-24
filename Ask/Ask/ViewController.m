@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AskNumView.h"
+#import "AskViewController.h"
 
 @interface ViewController ()
 
@@ -22,7 +23,9 @@
 
 - (IBAction)numberAction:(id)sender
 {
-	[[AskNumView shared] show];
+	//[[AskNumView shared] show];
+	AskViewController *askVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AskStoryboardId"];
+	[self.navigationController pushViewController:askVC animated:YES];
 }
 
 @end
