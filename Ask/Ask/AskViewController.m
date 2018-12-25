@@ -8,6 +8,7 @@
 
 #import "AskViewController.h"
 #import "Masonry/Masonry.h"
+#import "StoryPlayViewController.h"
 
 @interface AskCollectionCell()
 
@@ -28,7 +29,7 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		self.backgroundColor = [UIColor redColor];
+		self.backgroundColor = [UIColor whiteColor];
 		[self addSubview:self.iconImgView];
 		[self addSubview:self.titleLabel];
 		[self addSubview:self.descLabel];
@@ -41,24 +42,25 @@
 - (void)subViewContaints
 {
 	[self.iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self.contentView.mas_top).offset(5);
-		make.left.equalTo(self.contentView.mas_left).offset(5);
-		make.right.equalTo(self.contentView.mas_right).offset(-5);
-		make.bottom.equalTo(self.contentView.mas_bottom).offset(-50);
+		make.top.equalTo(self.contentView.mas_top).offset(0);
+		make.left.equalTo(self.contentView.mas_left).offset(0);
+		make.right.equalTo(self.contentView.mas_right).offset(0);
+		make.height.mas_equalTo(CGRectGetWidth(self.contentView.frame));
+		make.height.mas_equalTo(self.iconImgView.mas_width).multipliedBy(1);
 	}];
 	
 	[self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self.iconImgView.mas_bottom).offset(0);
-		make.left.equalTo(self.contentView.mas_left).offset(5);
-		make.right.equalTo(self.contentView.mas_right).offset(5);
+		make.left.equalTo(self.contentView.mas_left).offset(1);
+		make.right.equalTo(self.contentView.mas_right).offset(-1);
 		make.bottom.equalTo(self.contentView.mas_bottom).offset(-20);
+		make.height.mas_equalTo(@20);
 	}];
 	
 	[self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self.titleLabel.mas_bottom).offset(0);
-		make.left.equalTo(self.contentView.mas_left).offset(5);
-		make.right.equalTo(self.contentView.mas_right).offset(5);
+		make.left.equalTo(self.contentView.mas_left).offset(1);
+		make.right.equalTo(self.contentView.mas_right).offset(-1);
 		make.bottom.equalTo(self.contentView.mas_bottom).offset(0);
+		make.height.mas_equalTo(@20);
 	}];
 }
 
@@ -67,8 +69,9 @@
 	if (!_iconImgView) {
 		_iconImgView = [UIImageView new];
 	}
-	_iconImgView.backgroundColor = [UIColor blueColor];
+	_iconImgView.backgroundColor = [UIColor lightGrayColor];
 	_iconImgView.contentMode = UIViewContentModeScaleAspectFill;
+	_iconImgView.layer.cornerRadius = 11;
 	return _iconImgView;
 }
 
@@ -78,9 +81,9 @@
 		_titleLabel = [UILabel new];
 	}
 	_titleLabel.backgroundColor = [UIColor clearColor];
-	_titleLabel.textAlignment = NSTextAlignmentCenter;
+	_titleLabel.textAlignment = NSTextAlignmentLeft;
 	_titleLabel.textColor = [UIColor blackColor];
-	_titleLabel.font = [UIFont systemFontOfSize:15];
+	_titleLabel.font = [UIFont systemFontOfSize:14];
 	_titleLabel.numberOfLines = 1;
 	return _titleLabel;
 }
@@ -91,9 +94,9 @@
 		_descLabel = [UILabel new];
 	}
 	_descLabel.backgroundColor = [UIColor clearColor];
-	_descLabel.textAlignment = NSTextAlignmentCenter;
-	_descLabel.textColor = [UIColor blackColor];
-	_descLabel.font = [UIFont systemFontOfSize:13];
+	_descLabel.textAlignment = NSTextAlignmentLeft;
+	_descLabel.textColor = [UIColor lightGrayColor];
+	_descLabel.font = [UIFont systemFontOfSize:12];
 	_descLabel.numberOfLines = 1;
 	return _descLabel;
 }
@@ -159,6 +162,8 @@ NSString * const KAskCollectionCellId = @"KAskCollectionCellId";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSLog(@"didSelectItemAtIndexPath");
+	StoryPlayViewController *storyPlayVC = [self.storyboard instantiateViewControllerWithIdentifier:@"StoryPlayStoryboardId"];
+	[self.navigationController pushViewController:storyPlayVC animated:YES];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -170,20 +175,20 @@ NSString * const KAskCollectionCellId = @"KAskCollectionCellId";
 #pragma mark - setup view
 - (void)setupCollectionView
 {
-
-	CGFloat lw = (self.view.frame.size.width-60-24)/2;
-	CGFloat lh =  lw*4/3;
+	CGFloat padding = 14;
+	CGFloat lw = (CGRectGetWidth(self.view.frame)-padding*2-12)/2;
+	CGFloat lh =  lw+50;
 	
 	UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 	layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-	layout.minimumLineSpacing = 30;
+	layout.minimumLineSpacing = 20;
 	layout.minimumInteritemSpacing = 10;
-	layout.sectionInset = UIEdgeInsetsMake(10, 30, 10, 30);
+	layout.sectionInset = UIEdgeInsetsMake(10, padding, 10, padding);
 	layout.itemSize = CGSizeMake(lw, lh);
 	
 	_collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
 										 collectionViewLayout:layout];
-	_collectionView.backgroundColor = [UIColor blueColor];
+	_collectionView.backgroundColor = [UIColor whiteColor];
 	_collectionView.delegate = self;
 	_collectionView.dataSource = self;
 	[self.view addSubview:_collectionView];

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B1753CD21D0BDD90023114D /* AskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1753CC21D0BDD90023114D /* AskViewController.m */; };
+		9B17542721D229E90023114D /* StoryPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B17542621D229E90023114D /* StoryPlayViewController.m */; };
 		9BAA13C021CB68CA0039E987 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA13A721CB68CA0039E987 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		9BAA13C121CB68CA0039E987 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA13B021CB68CA0039E987 /* ViewController+MASAdditions.m */; };
 		9BAA13C221CB68CA0039E987 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA13B421CB68CA0039E987 /* MASCompositeConstraint.m */; };
@@ -44,6 +45,8 @@
 /* Begin PBXFileReference section */
 		9B1753CB21D0BDD90023114D /* AskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskViewController.h; sourceTree = "<group>"; };
 		9B1753CC21D0BDD90023114D /* AskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AskViewController.m; sourceTree = "<group>"; };
+		9B17542521D229E90023114D /* StoryPlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryPlayViewController.h; sourceTree = "<group>"; };
+		9B17542621D229E90023114D /* StoryPlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryPlayViewController.m; sourceTree = "<group>"; };
 		9BAA13A621CB68CA0039E987 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		9BAA13A721CB68CA0039E987 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		9BAA13A821CB68CA0039E987 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				9BD3B45721CA1F3A005F93DD /* ViewController.m */,
 				9B1753CB21D0BDD90023114D /* AskViewController.h */,
 				9B1753CC21D0BDD90023114D /* AskViewController.m */,
+				9B17542521D229E90023114D /* StoryPlayViewController.h */,
+				9B17542621D229E90023114D /* StoryPlayViewController.m */,
 				9BAA13CB21CB6A650039E987 /* AskNumView.h */,
 				9BAA13CC21CB6A650039E987 /* AskNumView.m */,
 				9BD3B45921CA1F3A005F93DD /* Main.storyboard */,
@@ -316,6 +321,7 @@
 				9BAA13C721CB68CA0039E987 /* MASConstraint.m in Sources */,
 				9BAA13C521CB68CA0039E987 /* NSArray+MASAdditions.m in Sources */,
 				9B1753CD21D0BDD90023114D /* AskViewController.m in Sources */,
+				9B17542721D229E90023114D /* StoryPlayViewController.m in Sources */,
 				9BD3B45521CA1F3A005F93DD /* AppDelegate.m in Sources */,
 				9BAA13C221CB68CA0039E987 /* MASCompositeConstraint.m in Sources */,
 				9BAA13C621CB68CA0039E987 /* View+MASAdditions.m in Sources */,
